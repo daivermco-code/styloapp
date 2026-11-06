@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tokens de StyloApp (DESIGN.md §2 y §2.1 "Modo noche", y docs/ui-design/UI-styloapp.md §3).
+ * La app sigue el modo claro u oscuro del sistema (Fase 16): cada token tiene su valor de día en
+ * :root y el de noche en @media (prefers-color-scheme: dark), con el mismo nombre. Las variables de
+ * shadcn/ui apuntan a los mismos colores para que sus componentes salgan con la marca sin tocarlos.
+ * Formato sin función (Tailwind 3): HSL las de shadcn, RGB las propias (el hex exacto de DESIGN.md).
+ */
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    --background: 168 42% 95%; /* canvas, menta del fondo #EEF8F6 */
+    --foreground: 167 6% 32%; /* ink, grafito verdoso #4D5654 */
+    --card: 180 50% 99%; /* surface, blanco hueso #FCFEFE */
+    --card-foreground: 167 6% 32%;
+    --popover: 180 50% 99%;
+    --popover-foreground: 167 6% 32%;
+    --primary: 176 80% 27%; /* verde petróleo #0E7C74 */
+    --primary-foreground: 180 50% 99%;
+    --secondary: 186 72% 16%; /* petróleo profundo #0B3F45 */
+    --secondary-foreground: 180 50% 99%;
+    --secondary-text: 186 72% 16%; /* el mismo petróleo, como texto y anillo */
+    --muted: 180 12% 95%; /* fondo gris #F1F4F4 */
+    --muted-foreground: 171 6% 43%; /* gris pizarra #677472 */
+    --accent: 168 52% 84%; /* menta clara #BFEBE2 */
+    --accent-foreground: 186 72% 16%;
+    --destructive: 4 71% 50%; /* rojo semáforo #D93025 */
+    --destructive-foreground: 180 50% 99%;
+    --success: 132 55% 40%; /* verde hoja #2E9E44 */
+    --warning: 42 100% 47%; /* ámbar estrella #F2A900 */
+    --border: 173 15% 89%; /* gris de línea #E0E8E7 */
+    --input: 170 10% 76%; /* gris de borde #BCC8C6 */
+    --ring: 176 80% 27%;
+    --overlay: 186 72% 16%; /* velo de ventanas y hojas, al 50 % */
+    --radius: 10px;
+
+    /* Nombres propios de StyloApp, en RGB */
+    --ink: 77 86 84; /* #4D5654 */
+    --slate: 103 116 114; /* #677472 */
+    --stroke: 188 200 198; /* #BCC8C6 */
+    --line: 224 232 231; /* #E0E8E7 */
+    --canvas: 238 248 246; /* #EEF8F6 */
+    --surface: 252 254 254; /* #FCFEFE */
+    --soft: 241 244 244; /* #F1F4F4 */
+    --tertiary: 191 235 226; /* #BFEBE2 */
+    --primary-50: 238 248 246; /* #EEF8F6 */
+    --primary-100: 213 239 235; /* #D5EFEB */
+    --primary-200: 183 226 220; /* #B7E2DC */
+    --primary-300: 134 204 195; /* #86CCC3 */
+    --primary-400: 62 156 147; /* #3E9C93 */
+    --primary-500: 26 138 129; /* #1A8A81 */
+    --primary-600: 14 124 116; /* #0E7C74 */
+    --primary-700: 11 101 95; /* #0B655F */
+    --primary-800: 11 80 76; /* #0B504C */
+    --primary-900: 11 63 69; /* #0B3F45 */
+    --shadow: 11 63 69; /* sombras en petróleo */
+    --ring-offset: 255 255 255; /* el hueco de ring-offset, como Tailwind */
+  }
+
+  /*
+   * Modo noche (DESIGN.md §2.1). Superficies de laguna oscura y el verde de la marca más claro, con
+   * texto oscuro encima. Contraste AA revisado: texto 4,5 : 1 y lo grande y los íconos 3 : 1.
+   * La escala primary-* se usa por papel, no por orden: 50 a 300 son fondos (de noche, tintes oscuros),
+   * 400 el borde de las citas, 700 el hover del botón principal y 800 el de las franjas oscuras.
+   */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 173.3 24.3% 7.3%; /* #0E1716 laguna de noche */
+      --foreground: 166.7 22% 92%; /* #E6EFED espuma */
+      --card: 169.1 20% 10.8%; /* #16211F superficie */
+      --card-foreground: 166.7 22% 92%;
+      --popover: 169.1 20% 10.8%;
+      --popover-foreground: 166.7 22% 92%;
+      --primary: 173.3 49.2% 53.7%; /* #4FC3B6 verde de noche */
+      --primary-foreground: 173.3 24.3% 7.3%; /* #0E1716 */
+      --secondary: 172.9 41.5% 16.1%; /* #183A36 petróleo de noche (franjas y pastillas) */
+      --secondary-foreground: 166.7 22% 92%; /* #E6EFED */
+      --secondary-text: 170.3 53.4% 77.3%; /* #A6E4DA menta, títulos y anillo */
+      --muted: 170.8 18.3% 13.9%; /* #1D2A28 */
+      --muted-foreground: 167.4 10.7% 65.3%; /* #9DB0AC */
+      --accent: 170.6 35.6% 17.6%; /* #1D3D38 */
+      --accent-foreground: 170.3 53.4% 77.3%; /* #A6E4DA */
+      --destructive: 7.4 82.8% 74.9%; /* #F4978A */
+      --destructive-foreground: 173.3 24.3% 7.3%; /* #0E1716 */
+      --success: 136.7 50.8% 62.5%; /* #6FD08A */
+      --warning: 42.1 89.1% 63.9%; /* #F5C451 */
+      --border: 168 15.2% 19.4%; /* #2A3936 */
+      --input: 170.5 10.7% 34.7%; /* #4F625F */
+      --ring: 173.3 49.2% 53.7%; /* #4FC3B6 */
+      --overlay: 0 0% 0%; /* negro */
+
+      --ink: 230 239 237; /* #E6EFED */
+      --slate: 157 176 172; /* #9DB0AC */
+      --stroke: 79 98 95; /* #4F625F */
+      --line: 42 57 54; /* #2A3936 */
+      --canvas: 14 23 22; /* #0E1716 */
+      --surface: 22 33 31; /* #16211F */
+      --soft: 29 42 40; /* #1D2A28 */
+      --tertiary: 29 61 56; /* #1D3D38 */
+      --primary-50: 21 48 44; /* #15302C */
+      --primary-100: 26 59 55; /* #1A3B37 */
+      --primary-200: 34 80 74; /* #22504A */
+      --primary-300: 47 107 99; /* #2F6B63 */
+      --primary-400: 69 168 156; /* #45A89C */
+      --primary-500: 63 179 166; /* #3FB3A6 */
+      --primary-600: 79 195 182; /* #4FC3B6 */
+      --primary-700: 122 211 200; /* #7AD3C8, más claro: hover del botón principal */
+      --primary-800: 36 82 76; /* #24524C, hover de las franjas oscuras */
+      --primary-900: 24 58 54; /* #183A36 */
+      --shadow: 0 0 0;
+      --ring-offset: 22 33 31; /* #16211F */
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background font-sans text-base text-foreground antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

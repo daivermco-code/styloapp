@@ -1,0 +1,14 @@
+# Finales de línea LF en todos los sistemas operativos.
+* text=auto eol=lf
+
+# Binarios: nunca se convierten.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.ttf   binary
+*.woff  binary
+*.woff2 binary

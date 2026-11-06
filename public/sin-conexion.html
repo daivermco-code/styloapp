@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- Página sin conexión (Fase 11, T-11.1.2). El service worker la guarda al instalar y la responde cuando una
+     pantalla no abre por falta de internet. Es estática: todo va aquí, sin archivos de afuera. -->
+<html lang="es-CO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0E7C74" />
+    <meta name="robots" content="noindex" />
+    <title>Sin conexión · StyloApp</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        background: #eef8f6;
+        color: #4d5654;
+        font-family:
+          Quicksand,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+      main {
+        width: 100%;
+        max-width: 360px;
+        padding: 32px 24px;
+        border: 1px solid #e0e8e7;
+        border-radius: 16px;
+        background: #fcfefe;
+        text-align: center;
+      }
+      svg {
+        width: 56px;
+        height: 56px;
+      }
+      h1 {
+        margin: 20px 0 8px;
+        color: #0e7c74;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      p {
+        margin: 0 0 24px;
+        color: #677472;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      button {
+        width: 100%;
+        min-height: 48px;
+        border: 0;
+        border-radius: 999px;
+        background: #0e7c74;
+        color: #fcfefe;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          background-color 120ms,
+          transform 120ms;
+      }
+      button:hover {
+        background: #0b655f;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      button:focus-visible {
+        outline: 3px solid #0b3f45;
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <svg viewBox="0 0 40 40" role="img" aria-label="StyloApp">
+        <rect width="40" height="40" rx="11" fill="#0E7C74" />
+        <path
+          d="M27 13.5c-1.4-2-3.9-3-6.8-3-4 0-6.7 2.1-6.7 5.1 0 6.6 13.8 3.6 13.8 10.3 0 3.2-2.9 5.6-7.2 5.6-3.3 0-6-1.3-7.4-3.6"
+          fill="none"
+          stroke="#FCFEFE"
+          stroke-width="3.4"
+          stroke-linecap="round"
+        />
+        <circle cx="29.5" cy="29.5" r="2.2" fill="#FCFEFE" />
+      </svg>
+      <h1>Sin conexión</h1>
+      <p>
+        No hay internet en este momento. Revisa el wifi o los datos y vuelve a
+        intentarlo. Esta pantalla se abre sola cuando vuelva la conexión.
+      </p>
+      <button type="button" id="reintentar">Reintentar</button>
+    </main>
+    <script>
+      document
+        .getElementById("reintentar")
+        .addEventListener("click", function () {
+          location.reload();
+        });
+      window.addEventListener("online", function () {
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

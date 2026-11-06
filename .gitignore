@@ -1,0 +1,37 @@
+# Dependencias
+/node_modules
+
+# Pruebas
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+
+# Next.js
+/.next/
+/out/
+/build
+/dist
+*.tsbuildinfo
+next-env.d.ts
+
+# Variables de entorno: solo se sube el ejemplo
+.env
+.env*.local
+!.env.example
+
+# Vercel
+.vercel
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Registros y archivos del sistema
+npm-debug.log*
+*.log
+*.pem
+.DS_Store
+Thumbs.db
+.vscode
+.idea
